@@ -87,15 +87,15 @@ version-file = "src/pyrise/_version.py"
 [tool.black]
 line-length = 88
 target-version = ['py310']
-include = "\\\\\\\\\\\\\\\\.pyi?$"
+include = "\\\\\\\\.pyi?$"
 extend-exclude = '''
 /(
-  \\.eggs
-  | \\.git
-  | \\.hg
-  | \\.mypy_cache
-  | \\.tox
-  | \\.venv
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
   | _build
   | buck-out
   | build
@@ -146,8 +146,8 @@ python_files = ["test_*.py", "*_test.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 markers = [
-  "slow: marks tests as slow (deselect with '-m \\"not slow\\"')",
-  "gpu: marks tests that require GPU (deselect with '-m \\"not gpu\\"')",
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+  "gpu: marks tests that require GPU (deselect with '-m \"not gpu\"')",
   "integration: marks tests as integration tests",
   "unit: marks tests as unit tests"
 ]
@@ -177,8 +177,8 @@ exclude_lines = [
   "raise NotImplementedError",
   "if 0:",
   "if __name__ == .__main__.:",
-  "class .*\\\\bProtocol\\\\):",
-  "@(abc\\.)?abstractmethod"
+  "class .*\\bProtocol\\):",
+  "@(abc\.)?abstractmethod"
 ]
 show_missing = true
 precision = 2
