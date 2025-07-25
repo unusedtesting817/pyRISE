@@ -1,0 +1,203 @@
+# TEAM MEMBER 1: Code Quality & Static Analysis Engineer
+# Create pyproject.toml with comprehensive configuration
+
+pyproject_toml_content = """
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyrise"
+description = "A JAX-first Python successor to the RISE toolbox for regime-switching DSGE models"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "PyRISE Development Team", email = "pyrise@example.com"}
+]
+maintainers = [
+    {name = "PyRISE Development Team", email = "pyrise@example.com"}
+]
+keywords = ["macroeconomics", "dsge", "regime-switching", "jax", "economics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "jax[cpu]>=0.4.0",
+    "jaxlib>=0.4.0",
+    "numpy>=1.24.0",
+    "scipy>=1.11.0",
+    "sympy>=1.12.0",
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "ruamel.yaml>=0.17.0",
+    "lark>=1.1.0",
+    "dynamax>=0.1.0",
+    "blackjax>=1.0.0",
+    "optax>=0.1.0",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+gpu = ["jax[cuda12]>=0.4.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",
+    "hypothesis>=6.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-book-theme>=1.0.0",
+    "myst-parser>=2.0.0",
+    "sphinx-autodoc-typehints>=1.24.0",
+    "jupyter-book>=0.15.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+]
+benchmark = [
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/pyrise-project/pyrise"
+Documentation = "https://pyrise.readthedocs.io"
+Repository = "https://github.com/pyrise-project/pyrise"
+Issues = "https://github.com/pyrise-project/pyrise/issues"
+Changelog = "https://github.com/pyrise-project/pyrise/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/pyrise/_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \\.eggs
+  | \\.git
+  | \\.hg
+  | \\.mypy_cache
+  | \\.tox
+  | \\.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["pyrise"]
+known_third_party = ["jax", "numpy", "scipy", "pandas", "matplotlib"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+    "jax.*",
+    "jaxlib.*",
+    "dynamax.*",
+    "blackjax.*",
+    "optax.*",
+    "lark.*",
+    "ruamel.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "gpu: marks tests that require GPU (deselect with '-m \"not gpu\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["pyrise"]
+branch = true
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+    "src/pyrise/_version.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+show_missing = true
+precision = 2
+
+[tool.coverage.html]
+directory = "htmlcov"
+"""
+
+# Write pyproject.toml
+with open("pyproject.toml", "w") as f:
+    f.write(pyproject_toml_content)
+
+print("✅ Created pyproject.toml with comprehensive configuration")
+print("   - Build system: hatchling + hatch-vcs")
+print("   - Dependencies: JAX, scientific Python stack")
+print("   - Dev tools: pytest, black, isort, flake8, mypy")
+print("   - Coverage configuration included")
