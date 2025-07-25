@@ -90,7 +90,6 @@ target-version = ['py310']
 include = "\\.pyi?$"
 extend-exclude = '''
 /(
-  # directories
   \.eggs
   | \.git
   | \.hg
