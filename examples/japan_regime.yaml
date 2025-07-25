@@ -1,0 +1,33 @@
+model:
+    name: Japan NK-DSGE with Regime-Switching
+    regimes:
+        - name: high_inflation
+          parameters:
+              alpha: 0.1
+              beta: 0.99
+              gamma: 0.5
+              rho_r: 0.8
+              phi_pi: 1.5
+              phi_y: 0.1
+              sigma_r: 0.01
+        - name: low_inflation
+          parameters:
+              alpha: 0.1
+              beta: 0.99
+              gamma: 0.5
+              rho_r: 0.8
+              phi_pi: 2.0
+              phi_y: 0.1
+              sigma_r: 0.01
+    shocks:
+        - name: eps_r
+          type: normal
+          mean: 0
+          std: 1
+    equations:
+        - "y_hat = y_hat{+1} - (1/gamma)*(r_hat - pi_hat{+1})"
+        - "pi_hat = beta*pi_hat{+1} + alpha*y_hat"
+        - "r_hat = rho_r*r_hat{-1} + (1-rho_r)*(phi_pi*pi_hat + phi_y*y_hat) + eps_r"
+    transition_matrix:
+        - [0.9, 0.1]
+        - [0.1, 0.9]

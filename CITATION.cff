@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Jules"
+    given-names: ""
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "pyRISE2: A modern Python package for solving and simulating DSGE models"
+version: 0.0.1
+date-released: 2023-10-27
