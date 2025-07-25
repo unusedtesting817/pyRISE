@@ -14,7 +14,7 @@ import warnings
 import yaml
 from pathlib import Path
 
-from pyrise.utils.validation import (
+from ..utils.validation import (
     validate_discount_factor,
     validate_transition_matrix,
     validate_parameter_bounds,
@@ -88,8 +88,8 @@ class ModelParameters:
     def _validate_regime_parameters(self):
         """Validate regime-specific parameters."""
 
-        for param_name, regimes in self.regime_params.items():
-            for regime_id, value in regimes.items():
+        for regime_id, params in self.regime_params.items():
+            for param_name, value in params.items():
 
                 # Taylor rule coefficients
                 if param_name.startswith('psi_'):
