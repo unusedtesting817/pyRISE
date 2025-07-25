@@ -14,8 +14,8 @@ from jax import Array, jit, vmap
 import warnings
 from abc import ABC, abstractmethod
 
-from ..core.model import Model
-from ..utils.validation import EconomicValidationError
+from pyrise.core.model import Model
+from pyrise.utils.validation import EconomicValidationError
 
 
 @dataclass
@@ -153,7 +153,6 @@ class PerturbationSolver:
 
         return A, B, C
 
-    @jit
     def _solve_partition(self, A: Array, B: Array, C: Array) -> Tuple[Dict, SolutionDiagnostics]:
         """
         Solve using partition perturbation method.
@@ -324,8 +323,8 @@ class Solution:
         """
         # Placeholder implementation
         responses = {}
-
-        for var_name in self.model.equations.state_variables:
+        variables = self.model.equations.state_variables + self.model.equations.control_variables
+        for var_name in variables:
             # Simple exponential decay response (placeholder)
             t = jnp.arange(horizon)
             response = shock_size * jnp.exp(-0.1 * t)

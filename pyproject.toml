@@ -1,3 +1,73 @@
 [build-system]
-requires = ["setuptools>=42","wheel"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyrise"
+version = "0.1.0"
+description = "A JAX-first Python successor to the RISE toolbox for regime-switching DSGE models"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "PyRISE Development Team", email = "unusedtesting817@gmail.com" }
+]
+maintainers = [
+  { name = "PyRISE Development Team", email = "unusedtesting817@gmail.com" }
+]
+keywords = ["macroeconomics", "dsge", "regime-switching", "jax", "economics"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.10"
+dependencies = [
+  "jax[cpu]>=0.4.0",
+  "dynamax>=0.1.0",
+  "pandas>=2.0.0",
+  "ruamel-yaml>=0.17.0",
+  "lark>=1.1.0",
+  "sympy>=1.12.0",
+  "scipy>=1.11.0",
+        "matplotlib>=3.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-cov>=4.0.0",
+  "pytest-xdist>=3.0.0",
+  "hypothesis>=6.0.0",
+  "black>=23.0.0",
+  "isort>=5.12.0",
+  "flake8>=6.0.0",
+  "mypy>=1.0.0",
+  "pre-commit>=3.0.0"
+]
+docs = [
+  "sphinx>=7.0.0",
+  "sphinx-book-theme>=1.0.0",
+  "myst-parser>=2.0.0",
+  "sphinx-autodoc-typehints>=1.24.0",
+  "jupyter-book>=0.15.0",
+  "matplotlib>=3.7.0",
+  "seaborn>=0.12.0"
+]
+benchmark = [
+  "matplotlib>=3.7.0",
+  "seaborn>=0.12.0",
+  "jupyter>=1.0.0",
+  "ipykernel>=6.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/pyrise-project/pyrise"
+Documentation = "https://pyrise.readthedocs.io"
+Repository = "https://github.com/pyrise-project/pyrise"
+Issues = "https://github.com/pyrise-project/pyrise/issues"
+Changelog = "https://github.com/pyrise-project/pyrise/blob/main/CHANGELOG.md"

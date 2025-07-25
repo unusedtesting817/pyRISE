@@ -4,6 +4,7 @@ from .core.model import Model
 from .solvers.perturbation import PerturbationSolver
 from .utils.validation import validate_discount_factor, validate_transition_matrix
 from .utils.reproducibility import configure_reproducible_environment
+from . import simulate
 
 def load_model(model_file: str) -> "Model":
     """
